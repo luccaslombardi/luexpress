@@ -32,14 +32,14 @@ function Products() {
     return (
         <>
             <p>Até aqui tudo certo</p>
-            <ul>{products.map(product => {
+            {products.map(product => {
                 return (
-                    <li key={product.id}>
-                        <img src={product.image} alt="" />
+                    <div key={product.id}>
+                        <img src={product.image} alt="" width={100}/>
                         <p>{product.title}</p>
-                    </li>
+                    </div>
                 )
-            })}</ul>
+            })}
         </>
     )
 }
