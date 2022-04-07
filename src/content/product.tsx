@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
+import { Text, Image, View } from "react-native"
 
 interface productData {
     id: number;
@@ -31,13 +32,13 @@ function Products() {
     console.log("terceiro log: ", products)
     return (
         <>
-            <p>Até aqui tudo certo</p>
+            <Text>Até aqui tudo certo</Text>
             {products.map(product => {
                 return (
-                    <div key={product.id}>
-                        <img src={product.image} alt="" width={100}/>
-                        <p>{product.title}</p>
-                    </div>
+                    <View key={product.id}>
+                        <Image style={{ width: 100, height: 100 }} source={{ uri: product.image }} />
+                        <Text>{product.title}</Text>
+                    </View>
                 )
             })}
         </>
