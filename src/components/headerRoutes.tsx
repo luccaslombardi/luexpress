@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import { AntDesign } from '@expo/vector-icons'
 import Home from '../pages/home';
 import Cart from '../pages/cart';
+import Product from '../content/product';
 
 
 const Stack = createStackNavigator()

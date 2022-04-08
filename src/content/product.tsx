@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
-import { Text, Image, View, StyleSheet, TouchableOpacity } from "react-native"
-import { useNavigation } from '@react-navigation/native'
+import { Text, Image, View, StyleSheet, TouchableOpacity, Button } from "react-native"
+import {  useNavigation } from '@react-navigation/native'
+import Cart from "../pages/cart";
 
 interface productData {
     id: number;
@@ -16,9 +17,12 @@ interface productData {
     }
 }
 
+
 function Products() {
 
     const [products, setProducts] = useState<productData[]>([])
+    const [cartItems, setCartItems] = useState<productData[]>([])
+    const navigator = useNavigation()
 
 
     useEffect(() => {
@@ -26,15 +30,30 @@ function Products() {
             .get("/products")
             .then(res => {
                 setProducts(res.data)
-                console.log("Segundo log ", products)
             })
             .catch(err => console.log(err))
     }, [])
 
-    console.log("terceiro log: ", products)
-    return (
-        <View style={styles.container}>
+    const cartHaveProduct = async (lastProduct: number, product:any) => {
+        if(lastProduct.length === 0) {
+            setCartItems(product)
+            console.log("Nâo tinha antes" ,cartItems)
+            navigator.navigate("cart", {item: cartItems})
 
+        } else {    
+                lastProduct.push(product)
+                setCartItems(lastProduct)
+                console.log("Tinha antes, esse é mais um", cartItems)
+            navigator.navigate("cart", {item: cartItems})
+
+        }
+    }
+
+
+    return (
+        
+        <View style={styles.container}>
+        
             {products.map(product => {
                 return (
                     <View key={product.id} style={styles.productView}>
@@ -43,6 +62,13 @@ function Products() {
                         </TouchableOpacity>
                         <Text>{product.title}</Text>
                         <Text>{product.price}</Text>
+                        <Button 
+                        title={"Luccas"}  
+                        onPress={()=> {
+                            cartHaveProduct(cartItems,product)
+                            
+                        }
+                            } />
                     </View>
                 )
             })}
