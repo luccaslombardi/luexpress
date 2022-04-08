@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
-import { Text, Image, View, StyleSheet, Button } from "react-native"
+import { Text, Image, View, StyleSheet, TouchableOpacity } from "react-native"
+import { useNavigation } from '@react-navigation/native'
 
 interface productData {
     id: number;
@@ -16,6 +17,7 @@ interface productData {
 }
 
 function Products() {
+
     const [products, setProducts] = useState<productData[]>([])
 
 
@@ -36,7 +38,9 @@ function Products() {
             {products.map(product => {
                 return (
                     <View key={product.id} style={styles.productView}>
-                        <Image style={{ width: 100, height: 100 }} source={{ uri: product.image }} />
+                        <TouchableOpacity >
+                        <Image style={{ width: 100, height: 100 }} source={{ uri: product.image }}  />
+                        </TouchableOpacity>
                         <Text>{product.title}</Text>
                         <Text>{product.price}</Text>
                     </View>

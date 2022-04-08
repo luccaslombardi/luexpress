@@ -1,7 +1,7 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer, useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import { AntDesign } from '@expo/vector-icons'
 import Home from '../pages/home';
 import Cart from '../pages/cart';
@@ -13,9 +13,6 @@ function HeaderRoutes() {
     const navigator = useNavigation()
 
     return (
-
-
-        <NavigationContainer >
 
             <Stack.Navigator>
                 <Stack.Screen
@@ -32,7 +29,7 @@ function HeaderRoutes() {
                                         name="shoppingcart"
                                         size={25}
                                         color="black"
-                                        onPress={() => navigator.navigate("Cart")}
+                                        onPress={()=> navigator.navigate('cart')}
                                     />
                                 </TouchableOpacity>
                             )
@@ -44,25 +41,11 @@ function HeaderRoutes() {
                     name="cart"
                     component={Cart}
                     options={{
-                        title: "CART",
-                        headerRight: () => {
-                            return (
-                                <TouchableOpacity style={{ marginRight: 15 }}>
-                                    <AntDesign
-                                        name="shoppingcart"
-                                        size={25}
-                                        color="black"
-                                    />
-                                </TouchableOpacity>
-                            )
-                        }
+                        title: "CART"
                     }}
                 />
-
-
-
             </Stack.Navigator>
-        </NavigationContainer>
+
     )
 
 }
