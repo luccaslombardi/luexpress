@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
-import { Text, Image, View } from "react-native"
+import { Text, Image, View, StyleSheet, Button } from "react-native"
 
 interface productData {
     id: number;
@@ -31,21 +31,39 @@ function Products() {
 
     console.log("terceiro log: ", products)
     return (
-        <>
-            <Text>Até aqui tudo certo</Text>
+        <View style={styles.container}>
+
             {products.map(product => {
                 return (
-                    <View key={product.id}>
+                    <View key={product.id} style={styles.productView}>
                         <Image style={{ width: 100, height: 100 }} source={{ uri: product.image }} />
                         <Text>{product.title}</Text>
+                        <Text>{product.price}</Text>
                     </View>
                 )
             })}
-        </>
+        </View>
     )
 }
 
 export default Products
 
+const styles = StyleSheet.create({
+    container: {
+        display: 'flex',
+
+    },
+
+    productView: {
+        width: "40%",
+        alignItems: 'center',
+        flexDirection: 'column',
+        backgroundColor: "white",
+        padding: 20,
+        marginVertical: 20,
+        marginHorizontal: 10,
+    }
+
+})
 
 
