@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
 import { Text, Image, View, StyleSheet, TouchableOpacity, Button } from "react-native"
-import {  useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import Cart from "../pages/cart";
 
 interface productData {
@@ -21,7 +21,7 @@ interface productData {
 function Products() {
 
     const [products, setProducts] = useState<productData[]>([])
-    const [cartItems, setCartItems] = useState<productData[]>([])
+    const cartItems: productData[] = []
     const navigator = useNavigation()
 
 
@@ -34,40 +34,33 @@ function Products() {
             .catch(err => console.log(err))
     }, [])
 
-    const cartHaveProduct = async (lastProduct: number, product:any) => {
-        if(lastProduct.length === 0) {
-            setCartItems(product)
-            console.log("Nâo tinha antes" ,cartItems)
-            navigator.navigate("cart", {item: cartItems})
+    const cartHaveProduct = async (lastProduct: [], product: any) => {
+        lastProduct.push(product)
+        console.log(cartItems)
+        navigator.navigate("header", { item: cartItems })
 
-        } else {    
-                lastProduct.push(product)
-                setCartItems(lastProduct)
-                console.log("Tinha antes, esse é mais um", cartItems)
-            navigator.navigate("cart", {item: cartItems})
-
-        }
     }
 
 
+
     return (
-        
+
         <View style={styles.container}>
-        
+
             {products.map(product => {
                 return (
                     <View key={product.id} style={styles.productView}>
                         <TouchableOpacity >
-                        <Image style={{ width: 100, height: 100 }} source={{ uri: product.image }}  />
+                            <Image style={{ width: 100, height: 100 }} source={{ uri: product.image }} />
                         </TouchableOpacity>
                         <Text>{product.title}</Text>
                         <Text>{product.price}</Text>
-                        <Button 
-                        title={"Luccas"}  
-                        onPress={()=> {
-                            cartHaveProduct(cartItems,product)
-                            
-                        }
+                        <Button
+                            title={"Add to Cart"}
+                            onPress={() => {
+                                cartHaveProduct(cartItems, product)
+
+                            }
                             } />
                     </View>
                 )
