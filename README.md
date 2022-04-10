@@ -4,14 +4,14 @@ luExpress é um projeto simples criado com React Native. O objetivo do app é ca
 ## Ferramentas Usadas
 #### React Native | Expo | Axios | Typescript | React Navigation 
 <br>
-Foi utilizado uma API pública chamada <strong>Fake Store</strong> que contém uma gama de produtos contendo imagens, títulos, preços, etc...
+Foi utilizado uma API pública chamada <strong>Fake Store</strong> que contém uma gama de produtos com imagens, títulos, preços, etc...
 <br>
 Para saber mais sobre essa API <a href="https://fakestoreapi.com/" target="blank">clique aqui</a>
 
 ## Requisitos para o projeto
 É necessário ter a versão <strong>Node 12 LTS</strong> ou superior, para mais informações sobre como atualizar <a href="https://nodejs.org/en/" target="blank">clique aqui</a>
 <br>
-Também é necessário <strong>Explo CLI</strong> que foi utilizado durante todo o desenvolvimento do projeto, para instalar rode esse comando no seu terminal:
+Também é necessário o <strong>Explo CLI</strong> que foi utilizado durante todo o desenvolvimento do projeto. Para instalar rode esse comando no seu terminal:
 ```
 npm install -g expo-cli
 ```
@@ -20,7 +20,7 @@ ou
 yarn add -g expo-cli
 ```
 ## Rodando o Projeto 
-Após ter instalado o Expo CLI, é necessário fazer clonar o repositório com o comando
+Após ter instalado o Expo CLI, é necessário clonar o repositório com o comando:
 ```
 git clone https://github.com/luccaslombardi/ton-luexpress.git
 ```
@@ -32,11 +32,11 @@ ou
 ```
 yarn add
 ```
-Depois que o Explo CLI estiver instalado, o repositório clonado e as dependências instaladas rode este comando
+Depois que o Explo CLI estiver instalado, o repositório clonado e as dependências instaladas, rode este comando para buildar o projeto:
 ```
 expo start
 ```
-Depois disso o Expo irá começar a rodar um local dahsboard com as opções para buildar o app, você poderá escolher rodar o app em um emulador Android, emulador iOS (para usuários de MacOS), rodar no seu próprio dispositivo lendo um QR Code ou rodar no próprio navegador (caso seu dispositivo não consiga rodar um emulador)
+Depois disso o Expo irá começar a rodar um local dahsboard com as opções para buildar o app. Você poderá escolher rodar o app em um emulador Android, emulador iOS (para usuários de MacOS), rodar no seu próprio dispositivo lendo um QR Code ou rodar no próprio navegador (caso seu dispositivo não consiga rodar um emulador)
 OBS: Caso tenha dúvidas, leia a documentação sobre <a href="https://docs.expo.dev/" target="blank">Expo Dev</a>
 
 ## App Overview
@@ -51,7 +51,7 @@ OBS: Caso tenha dúvidas, leia a documentação sobre <a href="https://docs.expo
 <li>Cada produto terá a opção de ser adicionado ou removido do carrinho de acordo com os ícones de + e - (Print 1);</li>
 <li>O usuário poderá clicar no ícone do carrinho para a acessar o mesmo;</li>
 <li>Após clicar o carrinho será feito uma busca para saber se existe algum produto no carrinho, caso tenha será carregado na tela (Print 2), caso não será carregada a imagem do Print 3;</li>
-<li>O usuário também terá a possibilidade de excluir um item diretamente do carrinho cliando no ícone (Print 3)</li>
+<li>O usuário também terá a possibilidade de excluir um item diretamente do carrinho cliando no ícone (Print 3);</li>
 </ul>
 OBS: Neste App náo e possível adicionar mais quantidades do mesmo produto no carrinho.
 
@@ -64,11 +64,11 @@ OBS: Neste App náo e possível adicionar mais quantidades do mesmo produto no c
 </p>
 <br>
 <ul>
-<li>Para melhorar a UX e mitigar erros, foi criado uma funcionalidade com alertas</li>
+<li>Para melhorar a UX e mitigar erros, foi criado uma funcionalidade com alertas;</li>
 <li>Após o usuário adicionar um produto no carrinho será emitido um alerta para ficar claro que o produto foi adicionado com sucesso (Print 1);</li>
 <li>Caso o usuário queira remover o item do carrinho direto da Home Page também será emitido um alerta após o botão para remoção ser clicado (Print 2);</li>
 <li>Existe a possibiliade do usuário apertar o botão para adicionar um produto já existente no carrinho, para isso é disparado um alerta caso o botão de adicionar seja clicado nesse caso (Print 3);</li>
-<li>O mesmo ocorre para caso o usuário tente remover um item que não esteja no carrinho pela Home Page, para isso e emitido um outro alerta (Print 4)</li>
+<li>O mesmo ocorre para caso o usuário tente remover um item que não esteja no carrinho pela Home Page, para isso e emitido um outro alerta (Print 4);</li>
 </ul>
 
 ## Criador
