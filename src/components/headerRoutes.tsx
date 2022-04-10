@@ -54,7 +54,15 @@ function HeaderRoutes() {
                 name="cart"
                 component={Cart}
                 options={{
-                    title: "CART",
+                    headerTitle: () => {
+                        return (
+                            <Image
+                                source={require("../../assets/logo.png")}
+                                style={{ width: 150, height: 70 }}
+                            />
+                        )
+
+                    },
                     headerRight: () => {
                         return (
                             <Text style={styles.date}>{currentDate}</Text>

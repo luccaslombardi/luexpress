@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
-import { Text, Image, View, StyleSheet, TouchableOpacity, Button } from "react-native"
+import { Text, Image, View, StyleSheet, TouchableOpacity, Button, Alert, ScrollView } from "react-native"
 import { useNavigation } from '@react-navigation/native'
 import { AntDesign, Ionicons } from '@expo/vector-icons'
 import { useFonts, Roboto_400Regular } from '@expo-google-fonts/roboto';
@@ -43,9 +43,19 @@ function Products() {
 
         if (findItem === undefined) {
             lastProducts.push(product)
-
+            Alert.alert(
+                "Uhuul!",
+                "Seu produto foi adicionado ao carrinho",
+                [
+                    {
+                        text: "Voltar",
+                        style: "cancel"
+                    },
+                    { text: "Ir para carrinho", onPress: () => navigator.navigate('cart', { item: cartItems }) }
+                ]
+            );
         } else if (findItem.id === product.id) {
-            alert("produto já esta no carrinho")
+            Alert.alert("Ops!", "esse produto já esta no carrinho")
         }
 
 
@@ -57,11 +67,26 @@ function Products() {
         const findItem = cartItems.find(item => item.id == product.id)
 
         if (findItem === undefined) {
-            alert("Esse produto não está no carrinho")
+            Alert.alert("Tem certeza que é esse?", "esse produto não está no carrinho")
         } else if (findItem.id === product.id) {
             const i = cartItems;
             const aux = i.findIndex((item: { id: number; }) => item.id === product.id);
             i.splice(aux, 1);
+            Alert.alert(
+                "Aaaah :(",
+                "Seu produto foi removido do carrinho",
+                [
+                    {
+                        text: "Ir para carrinho",
+                        onPress: () => navigator.navigate('cart', { item: cartItems })
+                    },
+                    {
+                        text: "Voltar",
+                        style: "cancel",
+                    }
+
+                ]
+            );
         }
     }
 
@@ -91,45 +116,49 @@ function Products() {
                     </TouchableOpacity>
                 </View>
             </View>
+            <ScrollView>
+                <View style={styles.container}>
+                    {products.map(product => {
 
-            <View style={styles.container}>
-                {products.map(product => {
+                        return (
 
-                    return (
+                            <View key={product.id} style={styles.productView}>
+                                <View style={styles.productImage}>
+                                    <Image style={{ width: 100, height: 100 }} source={{ uri: product.image }} />
+                                </View>
+                                <View style={styles.productInfo}>
+                                    <Text numberOfLines={1} style={styles.productTitle}>{product.title.length < 30 ? product.title : `${product.title.substring(0, 25)}...`}</Text>
+                                    <Text style={styles.productPrice}>{`$${product.price}`}</Text>
+                                    <View style={styles.buttonsView}>
+                                        <TouchableOpacity>
+                                            <Ionicons
+                                                name="remove-circle-outline"
+                                                size={30}
+                                                color="red"
+                                                onPress={() => {
+                                                    removeFromCart(product)
 
-                        <View key={product.id} style={styles.productView}>
-                            <View style={styles.productImage}>
-                                <Image style={{ width: 100, height: 100 }} source={{ uri: product.image }} />
-                            </View>
-                            <View style={styles.productInfo}>
-                                <Text numberOfLines={1} style={styles.productTitle}>{product.title.length < 30 ? product.title : `${product.title.substring(0, 25)}...`}</Text>
-                                <Text style={styles.productPrice}>{`$${product.price}`}</Text>
-                                <View style={styles.buttonsView}>
-                                    <Ionicons
-                                        name="remove-circle-outline"
-                                        size={30}
-                                        color="red"
-                                        onPress={() => {
-                                            removeFromCart(product)
-                                        }}
-                                    />
-                                    <Ionicons
-                                        name="add-circle-outline"
-                                        size={30}
-                                        color="green"
-                                        onPress={() => {
-                                            addToCart(cartItems, product)
-                                        }}
-                                    />
+                                                }}
+                                            />
+                                        </TouchableOpacity>
+                                        <TouchableOpacity>
+                                            <Ionicons
+                                                name="add-circle-outline"
+                                                size={30}
+                                                color="green"
+                                                onPress={() => {
+                                                    addToCart(cartItems, product)
+                                                }}
+                                            />
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
                             </View>
-                        </View>
-
-                    );
-                })}
-            </View>
+                        );
+                    })}
+                </View>
+            </ScrollView>
         </View>
-
     )
 }
 
@@ -146,7 +175,7 @@ const styles = StyleSheet.create({
     },
     titleContainer: {
         margin: "0 auto",
-        width: "95%",
+        width: "90%",
         display: 'flex',
         position: "relative",
         flexDirection: "row",
@@ -175,7 +204,12 @@ const styles = StyleSheet.create({
         padding: 20,
         marginTop: 20,
         marginHorizontal: 10,
-        borderRadius: 15
+        borderRadius: 15,
+        shadowColor: '#adadad',
+        shadowOffset: { width: -2, height: 4 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+
     },
     productImage: {
         width: '40%',
