@@ -27,7 +27,7 @@ function HeaderRoutes() {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name="home"
+                name="luExpress"
 
                 component={Home}
                 options={{

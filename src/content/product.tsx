@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import { AntDesign, Ionicons } from '@expo/vector-icons'
 import { useFonts, Roboto_400Regular } from '@expo-google-fonts/roboto';
 import AppLoading from 'expo-app-loading'
+import Footer from "../components/footer";
 
 interface productData {
     id: number;
@@ -156,9 +157,11 @@ function Products() {
                             </View>
                         );
                     })}
+                    <Footer />
                 </View>
             </ScrollView>
         </View>
+
     )
 }
 

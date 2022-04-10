@@ -85,8 +85,7 @@ export default Cart;
 
 const styles = StyleSheet.create({
     titleContainer: {
-        margin: "0 auto",
-        width: "90%",
+        width: "100%",
         display: 'flex',
         position: "relative",
         flexDirection: "row",
@@ -128,7 +127,7 @@ const styles = StyleSheet.create({
         paddingRight: 20
     },
     productInfo: {
-        width: '70%',
+        width: '65%',
         flexDirection: 'column'
     },
     productTitle: {
@@ -145,6 +144,6 @@ const styles = StyleSheet.create({
         paddingTop: 10
     },
     removeButton: {
-        width: '5%'
+        width: '10%'
     }
 })
