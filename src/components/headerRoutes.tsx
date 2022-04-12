@@ -23,15 +23,12 @@ function HeaderRoutes() {
         return <AppLoading />;
     }
 
-
     return (
         <Stack.Navigator>
             <Stack.Screen
                 name="luExpress"
-
                 component={Home}
                 options={{
-
                     headerTitle: () => {
                         return (
                             <Image
@@ -39,7 +36,6 @@ function HeaderRoutes() {
                                 style={{ width: 150, height: 70 }}
                             />
                         )
-
                     },
                     headerRight: () => {
                         return (
@@ -47,7 +43,6 @@ function HeaderRoutes() {
                         )
                     }
                 }}
-
             />
 
             <Stack.Screen
@@ -61,22 +56,16 @@ function HeaderRoutes() {
                                 style={{ width: 150, height: 70 }}
                             />
                         )
-
                     },
                     headerRight: () => {
                         return (
                             <Text style={styles.date}>{currentDate}</Text>
                         )
                     }
-
                 }}
             />
-
-
         </Stack.Navigator>
-
     )
-
 }
 
 export default HeaderRoutes

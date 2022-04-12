@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, TouchableOpacity, View, Image, Button, StyleSheet } from "react-native";
+import { Text, TouchableOpacity, View, Image, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import { MaterialIcons } from '@expo/vector-icons';
@@ -21,10 +21,9 @@ function Cart({ route }: any) {
     const [cartItems, setCartItems] = useState<productData[]>([]);
     const navigator = useNavigation();
 
-
     useEffect(() => {
         if (route.params.item) {
-            setCartItems(route.params?.item);
+            setCartItems(route.params.item);
         } else if (route.params.item === 0) {
             setCartItems([])
         }
@@ -37,8 +36,6 @@ function Cart({ route }: any) {
         setCartItems(i);
         navigator.navigate("cart", { item: cartItems });
     };
-
-
 
     return (
         <ScrollView>

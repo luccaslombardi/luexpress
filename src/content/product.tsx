@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
-import { Text, Image, View, StyleSheet, TouchableOpacity, Button, Alert, ScrollView } from "react-native"
+import { Text, Image, View, StyleSheet, TouchableOpacity, Alert, ScrollView } from "react-native"
 import { useNavigation } from '@react-navigation/native'
 import { AntDesign, Ionicons } from '@expo/vector-icons'
 import { useFonts, Roboto_400Regular } from '@expo-google-fonts/roboto';
@@ -21,12 +21,9 @@ interface productData {
 }
 
 function Products() {
-
     const [products, setProducts] = useState<productData[]>([])
     const cartItems: productData[] = []
     const navigator = useNavigation()
-
-
 
     useEffect(() => {
         api
@@ -37,13 +34,11 @@ function Products() {
             .catch(err => console.log(err))
     }, [])
 
-
-
-    const addToCart = async (lastProducts: any, product: any) => {
+    const addToCart = async (product: any) => {
         const findItem = cartItems.find(item => item.id == product.id)
 
         if (findItem === undefined) {
-            lastProducts.push(product)
+            cartItems.push(product)
             Alert.alert(
                 "Uhuul!",
                 "Seu produto foi adicionado ao carrinho",
@@ -58,21 +53,16 @@ function Products() {
         } else if (findItem.id === product.id) {
             Alert.alert("Ops!", "esse produto já esta no carrinho")
         }
-
-
-
     }
 
     const removeFromCart = async (product: any) => {
-
         const findItem = cartItems.find(item => item.id == product.id)
 
         if (findItem === undefined) {
             Alert.alert("Tem certeza que é esse?", "esse produto não está no carrinho")
         } else if (findItem.id === product.id) {
-            const i = cartItems;
-            const aux = i.findIndex((item: { id: number; }) => item.id === product.id);
-            i.splice(aux, 1);
+            const aux = cartItems.findIndex((item: { id: number; }) => item.id === product.id);
+            cartItems.splice(aux, 1);
             Alert.alert(
                 "Aaaah :(",
                 "Seu produto foi removido do carrinho",
@@ -85,7 +75,6 @@ function Products() {
                         text: "Voltar",
                         style: "cancel",
                     }
-
                 ]
             );
         }
@@ -100,7 +89,6 @@ function Products() {
     }
 
     return (
-
         <View>
             <View style={styles.firstContainer}>
                 <View style={styles.titleContainer}>
@@ -138,7 +126,6 @@ function Products() {
                                                 color="red"
                                                 onPress={() => {
                                                     removeFromCart(product)
-
                                                 }}
                                             />
                                         </TouchableOpacity>
@@ -148,7 +135,7 @@ function Products() {
                                                 size={30}
                                                 color="green"
                                                 onPress={() => {
-                                                    addToCart(cartItems, product)
+                                                    addToCart(product)
                                                 }}
                                             />
                                         </TouchableOpacity>
@@ -161,7 +148,6 @@ function Products() {
                 </View>
             </ScrollView>
         </View>
-
     )
 }
 
